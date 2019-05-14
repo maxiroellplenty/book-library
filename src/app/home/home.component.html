@@ -18,7 +18,7 @@
     </form-->
 <h3>Suchergebnisse:</h3>
 
-<table class="table">
+<div class="container">
     <!-->tr>
         <th>Bild:</th>
         <th>ISBN:</th>
@@ -26,15 +26,18 @@
         <th>Verfügbarkeit</th>
         <th></th>
     </tr-->
-    <tr *ngFor="let result of results">
-        <td><img width="100px" height="200px" src="{{result.img}}"></td>
-        <td><a href="#" >{{result.buchtitel}}</a><br>
-        Author: {{result.author}}<br>
-        ISBN: {{result.ISBN}}
-        </td>
-        
-        <td><span *ngIf="result.available && result.available > 0" style="color:green">Verfügbar</span>
-            <span *ngIf="!result.available || result.available == 0" style="color:red">nicht Verfügbar</span></td>
-       
-    </tr>
-</table>
+    <div class="row mb-3 pt-2 pb-2 book-search-item" *ngFor="let result of results">
+        <div class="col">
+            <img width="100px" height="100px" src="{{result.img}}">
+        </div>
+        <div class="col">
+            <a href="#" >{{result.buchtitel}}</a><br>
+            <div>Author: {{result.author}}</div>
+            <div>ISBN: {{result.ISBN}}</div>
+        </div>
+        <div class="col">
+            <span *ngIf="result.available && result.available > 0" style="color:green">Verfügbar</span>
+            <span *ngIf="!result.available || result.available == 0" style="color:red">nicht Verfügbar</span>
+        </div>
+    </div>
+</div>
