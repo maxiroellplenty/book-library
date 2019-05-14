@@ -2,6 +2,8 @@
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
+
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '@/_models';
 import { UserService, AuthenticationService } from '@/_services';
 
@@ -11,7 +13,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     currentUserSubscription: Subscription;
     users: User[] = [];
 
-    constructor(
+    searchForm: FormGroup;
+
+    results: any[] = [{buchtitel: "Moby Dick", img:"https://books.google.de/books/content?id=jz4yDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71OT9edJENqTKUKAUIHI34VZxn2hIRA3_oM261jrwcsfPCwcf8cXe9hF7hGd_mSgzak0tXqTC7Coc6ZL5TPUTxX1wUO5X8dr-BcB-nP3_eBSEB52kA7Sh9Hi1Nu2qz4zSDwP3SK",author:"ich",ISBN: "12457801010",available: "1" },
+    {buchtitel: "Harry Potter",author:"du", ISBN: "124572201010",available: "0"},
+    {buchtitel: "Handgeschriebene Notiz",author:"er", ISBN: "-",available: "5"},
+    {buchtitel: "Englisch Freeway Buch",author:"sie", ISBN: "0190/123456",available: "10"}];
+
+    constructor(private formBuilder: FormBuilder,
         private authenticationService: AuthenticationService,
         private userService: UserService
     ) {
@@ -21,21 +30,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.loadAllUsers();
+        this.searchForm = this.formBuilder.group({
+            searchtext: ['', Validators.required]
+        });
+
+        this.loadSearchResults();
     }
 
     ngOnDestroy() {
         // unsubscribe to ensure no memory leaks
         this.currentUserSubscription.unsubscribe();
     }
+     // convenience getter for easy access to form fields
+     get f() { return this.searchForm.controls; }
 
-    deleteUser(id: number) {
-        this.userService.delete(id).pipe(first()).subscribe(() => {
-            this.loadAllUsers()
-        });
-    }
+   
 
-    private loadAllUsers() {
+    private loadSearchResults() {
         this.userService.getAll().pipe(first()).subscribe(users => {
             this.users = users;
         });
