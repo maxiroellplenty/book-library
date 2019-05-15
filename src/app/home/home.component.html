@@ -1,14 +1,10 @@
 ﻿<h1>Hi {{currentUser.firstName}}!</h1>
 
-<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="searchForm" (ngSubmit)="loadSearchResults()">
         <div class="form-group">
             <label for="suchtext">Suchtext</label>
-            <input type="text" formControlName="searchtext" class="form-control"  />
-            
-        </div>
-        <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Suchen</button>
-            
+            <input type="text" [(ngModel)]="searchText" ng-click="loadSearchResults()" formControlName="searchtext" class="form-control"  />
+            <button class="btn btn-primary">Suchen</button>
         </div>
     </form>
 
@@ -19,13 +15,6 @@
 <h3>Suchergebnisse:</h3>
 
 <div class="container">
-    <!-->tr>
-        <th>Bild:</th>
-        <th>ISBN:</th>
-        <th>Bild</th>
-        <th>Verfügbarkeit</th>
-        <th></th>
-    </tr-->
     <div class="row mb-3 pt-2 pb-2 book-search-item" *ngFor="let result of results">
         <div class="col">
             <img width="100px" height="100px" src="{{result.img}}">

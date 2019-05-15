@@ -5,14 +5,15 @@ import { first } from 'rxjs/operators';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '@/_models';
-import { UserService, AuthenticationService } from '@/_services';
+import { UserService, BookService, AuthenticationService } from '@/_services';
 
-@Component({ templateUrl: 'home.component.html',styleUrls:['./home.component.css']})
+@Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit, OnDestroy {
     currentUser: User;
     currentUserSubscription: Subscription;
     users: User[] = [];
 
+    searchText : string;
     searchForm: FormGroup;
 
     results: any[] = [{buchtitel: "Moby Dick", img:"https://books.google.de/books/content?id=jz4yDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71OT9edJENqTKUKAUIHI34VZxn2hIRA3_oM261jrwcsfPCwcf8cXe9hF7hGd_mSgzak0tXqTC7Coc6ZL5TPUTxX1wUO5X8dr-BcB-nP3_eBSEB52kA7Sh9Hi1Nu2qz4zSDwP3SK",author:"ich",ISBN: "12457801010",available: "1" },
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     constructor(private formBuilder: FormBuilder,
         private authenticationService: AuthenticationService,
-        private userService: UserService
+        private userService: UserService,
+        private bookService :BookService
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -34,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             searchtext: ['', Validators.required]
         });
 
-        this.loadSearchResults();
+        this.loadAllBooks();
     }
 
     ngOnDestroy() {
@@ -45,10 +47,16 @@ export class HomeComponent implements OnInit, OnDestroy {
      get f() { return this.searchForm.controls; }
 
    
+     private loadSearchResults() {
+         console.log("searching for:"+this.searchText);
+        this.bookService.getSearch(this.searchText).pipe().subscribe(results => {
+            this.results = results;
+        });
+    }
 
-    private loadSearchResults() {
-        this.userService.getAll().pipe(first()).subscribe(users => {
-            this.users = users;
+    private loadAllBooks() {
+        this.bookService.getAll().pipe(first()).subscribe(results => {
+            this.results = results;
         });
     }
 }
