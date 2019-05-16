@@ -1,6 +1,4 @@
-﻿<h1>Hi {{currentUser.firstName}}!</h1>
-
-<form [formGroup]="searchForm" (ngSubmit)="loadSearchResults()">
+﻿<form [formGroup]="searchForm" (ngSubmit)="loadSearchResults()">
         <div class="form-group">
             <label for="suchtext">Suchtext</label>
             <input type="text" [(ngModel)]="searchText" ng-click="loadSearchResults()" formControlName="searchtext" class="form-control"  />
@@ -12,17 +10,19 @@
     <!-->form (ngSubmit)="onSubmit()">
             <input placeholder="Suchetext..."> <input type="submit" value="suchen" >
     </form-->
-<h3>Suchergebnisse:</h3>
+<h3>Suchergebnisse: {{ this.results.length }} </h3>
 
 <div class="container">
     <div class="row mb-3 pt-2 pb-2 book-search-item" *ngFor="let result of results">
         <div class="col">
-            <img width="100px" height="100px" src="{{result.img}}">
+            <img width="100px" height="100px" src="{{result.img || 'http://via.placeholder.com/100x100'}}">
         </div>
         <div class="col">
-            <a href="#" >{{result.buchtitel}}</a><br>
+            <a (click)="openBook(result.id)">{{result.title}}</a><br>
             <div>Author: {{result.author}}</div>
-            <div>ISBN: {{result.ISBN}}</div>
+            <div>ISBN: {{result.isbn}}</div>
+            <div>Genre: {{result.genre}}</div>
+            <div>Verlag: {{result.verlag.name}}</div>
         </div>
         <div class="col">
             <span *ngIf="result.available && result.available > 0" style="color:green">Verfügbar</span>

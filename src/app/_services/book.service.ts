@@ -1,20 +1,23 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { ApiService } from './api.service';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Book } from '@/_models/book';
 
 @Injectable({ providedIn: 'root' })
 export class BookService {
-    constructor(private http: HttpClient) { }
+    constructor(private apiService:ApiService) { }
 
-    getAll() {
-        return this.http.get<Book[]>(`${config.apiUrl}/books`);
+    getBooks() {
+        return this.apiService.get('/books');
     }
 
-
-    getSearch(text: string) {
-        return this.http.post<Book[]>(`${config.apiUrl}/books/search`, text);
+    getBook(id)
+    {
+        return this.apiService.get('/book?id='+ id);
     }
 
-
+    search(text: string) {
+        return this.apiService.get('/bookstitle?title=' + text );
+    }
 }
