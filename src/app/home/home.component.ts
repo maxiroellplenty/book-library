@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     public openBook(id)
     {
-        this.router.navigate(['/book',id])
+        this.router.navigate(['/book',id],id);
     }
 
      private loadSearchResults() {
