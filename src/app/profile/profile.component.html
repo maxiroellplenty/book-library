@@ -1,0 +1,30 @@
+﻿
+
+
+    <!-->form (ngSubmit)="onSubmit()">
+            <input placeholder="Suchetext..."> <input type="submit" value="suchen" >
+    </form-->
+<h3>Hi: {{ currentUser.userName }} </h3>
+
+<div class="container">
+    <div class="row mb-3 pt-2 pb-2 book-search-item" *ngFor="let result of results">
+        <div class="col">
+            <img width="100px" height="100px" src="{{result.img || 'http://via.placeholder.com/100x100'}}">
+        </div>
+        <div class="col">
+            <a (click)="openBook(result.id)">{{result.title}}</a><br>
+            <div>Author: {{result.author}}</div>
+            <div>ISBN: {{result.isbn}}</div>
+            <div>Genre: {{result.genre}}</div>
+            <div>Verlag: {{result.verlag.name}}</div>
+            <div>Ausgeliehen am: {{result.startDate}}</div>
+            <div>Ausgeliehen bis: {{result.returnDue}}</div>
+        </div>
+        <div class="col">
+            <span *ngIf="result.available && result.available > 0" style="color:green">Verfügbar</span>
+            <span *ngIf="!result.available || result.available == 0" style="color:red">nicht Verfügbar</span>
+            <input type="button" value="zurückgeben">
+            <input type="button" value="Verlängern">
+        </div>
+    </div>
+</div>

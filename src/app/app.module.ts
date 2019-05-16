@@ -12,6 +12,7 @@ import { AlertComponent, BookComponent } from './_components';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import { ProfileComponent } from './profile';
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { RegisterComponent } from './register';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
+        ProfileComponent,
         BookComponent
     ],
     providers: [
