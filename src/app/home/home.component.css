@@ -10,3 +10,7 @@
 {
     color: black !important;
 }
+body
+{
+    background-image: url('../../../assets/books.jpg');
+}

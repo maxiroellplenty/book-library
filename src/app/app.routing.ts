@@ -1,4 +1,4 @@
-﻿import { BookComponent } from './_components/book/book.component';
+﻿import { BookComponent } from './book/book.component';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home';
