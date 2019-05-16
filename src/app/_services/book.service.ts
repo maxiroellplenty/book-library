@@ -21,4 +21,11 @@ export class BookService {
     search(text: string) {
         return this.apiService.get('/bookstitle?title=' + text );
     }
+
+
+    getBooksFromUserID(id: number) {
+        return this.apiService.get('/user?id=' + id );
+    }
+
+    
 }
