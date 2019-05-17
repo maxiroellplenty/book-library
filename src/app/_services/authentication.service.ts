@@ -13,6 +13,8 @@ export class AuthenticationService {
 
     constructor(private http: HttpClient, private apiService: ApiService) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        
+
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -23,7 +25,8 @@ export class AuthenticationService {
     login(username: string, password: string) {
         console.log("login now");
 
-        return this.apiService.post('/user/authenticate',{username,password}).pipe(map(user => {
+
+        return this.apiService.get('/user/authenticate?email='+username).pipe(map(user => {
             // login successful if there's a jwt token in the response
             if (user) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -34,18 +37,22 @@ export class AuthenticationService {
             return user;
         }));
 
+        /*
+        return this.apiService.post('/user/authenticate',{username,password}).pipe(map(user => {
+            // login successful if there's a jwt token in the response
+            if (user) {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+            }else{
+                user = {id:0, username:"testi",lastName:"",firstName:"",token:"",password:""};
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+            }
 
-        return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
+            return user;
+        }));*/
 
-                return user;
-            }));
     }
 
     logout() {

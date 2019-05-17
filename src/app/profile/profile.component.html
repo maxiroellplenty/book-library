@@ -4,7 +4,7 @@
     <!-->form (ngSubmit)="onSubmit()">
             <input placeholder="Suchetext..."> <input type="submit" value="suchen" >
     </form-->
-<h3>Hi: {{ currentUser.userName }} </h3>
+<h3>Hi: {{ currentUser.username }} </h3>
 
 <div class="container">
     <div class="row mb-3 pt-2 pb-2 book-search-item" *ngFor="let result of results">
@@ -17,12 +17,17 @@
             <div>ISBN: {{result.isbn}}</div>
             <div>Genre: {{result.genre}}</div>
             <div>Verlag: {{result.verlag.name}}</div>
-            <div>Ausgeliehen am: {{result.startDate}}</div>
-            <div>Ausgeliehen bis: {{result.returnDue}}</div>
+        </div>
+        <div class="col">
+            <div>Ausgeliehen am: {{result.startDate | date:'dd.MM.yyyy hh:mm'}}</div>
+            <div>Ausgeliehen bis: {{result.returnDue | date:'dd.MM.yyyy hh:mm'}}</div>
         </div>
         <div class="col">
             <span *ngIf="result.available && result.available > 0" style="color:green">Verfügbar</span>
             <span *ngIf="!result.available || result.available == 0" style="color:red">nicht Verfügbar</span>
+            
+        </div>
+        <div class="col">
             <input type="button" value="zurückgeben">
             <input type="button" value="Verlängern">
         </div>

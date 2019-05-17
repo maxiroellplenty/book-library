@@ -38,9 +38,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if(this.currentUser == undefined){
-            this.currentUser = {id:0, username:"testi",lastName:"",firstName:"",token:"",password:""};
-        }
+        
         this.loadAllBooks();
     }
   
@@ -57,9 +55,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
     private loadAllBooks() {
-        this.bookService.getBooksFromUserID(this.currentUser.id).subscribe(res => {
+        this.results = [{"title":"acbdenf",author:"peter müller", isbn: "1234567890",genre:"langeweile" ,
+        verlag:{name:"a Verlag"}, startDate:1233445566, returnDue:99299399} ];
+       /* this.bookService.getBooksFromUserID(this.currentUser.id).subscribe(res => {
             this.results = res;
             console.log(this.results);
-        });
+        });*/
     }
 }
