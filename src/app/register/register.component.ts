@@ -43,6 +43,7 @@ export class RegisterComponent implements OnInit {
     get f() { return this.registerForm.controls; }
 
     onSubmit() {
+        console.log("register now.");
         this.submitted = true;
 
         // stop here if form is invalid
