@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row pt-4">
+        <div class="col">
+            <h1>{{book.title}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 pt-2">
+            <img src="https://picsum.photos/200">
+        </div>
+        <div class="col-md-6 pt-2">
+                <ul class="list-group">
+                    <li class="list-group-item">Author: {{book.author}}</li>
+                    <li class="list-group-item">ISBN: {{book.isbn}}</li>
+                    <li class="list-group-item">Genre: {{book.genre}}</li>
+                    <li class="list-group-item">Verlag: {{book.verlag.name}}</li>
+                </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col p-3">
+            <button class="btn btn-primary">ausleihen</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 p-3">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h2 class="display-4">Inhalt</h2>
+                    <p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam......</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

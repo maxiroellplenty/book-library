@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             searchtext: ['', Validators.required]
         });
 
-        this.loadAllBooks();
+        //this.loadAllBooks();
     }
 
     ngOnDestroy() {
@@ -51,10 +51,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     public openBook(id)
     {
-        this.router.navigate(['/book',id])
+        this.router.navigate(['/book',id],id);
     }
 
      private loadSearchResults() {
+        if(this.searchText.length <= 0)
+        {
+            this.results = [];
+        }
         this.bookService.search(this.searchText).pipe().subscribe(results => {
             this.results = results;
         });
@@ -63,7 +67,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     private loadAllBooks() {
         this.bookService.getBooks().subscribe(res => {
             this.results = res;
-            console.log(this.results);
         });
     }
 }

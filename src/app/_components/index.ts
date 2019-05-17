@@ -1,2 +1,2 @@
 ﻿export * from './alert.component';
-export * from './book/book.component';
+export * from './navbar/navbar.component';

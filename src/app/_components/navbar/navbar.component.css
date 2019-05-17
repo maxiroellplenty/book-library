@@ -1,0 +1,17 @@
+.icon
+{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+.user-button
+{
+    justify-content: center;
+    display: flex;
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;
+    position: relative;
+    background-color: white; 
+}

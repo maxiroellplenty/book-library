@@ -1,4 +1,5 @@
-﻿import { ApiService } from './api.service';
+﻿import { ErrorInterceptor } from './../_helpers/error.interceptor';
+import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
