@@ -3,7 +3,7 @@
 ## Install 
 
 * download with git 
-`https://github.com/maxiroellplenty/book-library.git`
+`git clone https://github.com/maxiroellplenty/book-library.git`
 * go to the installed directory
 `npm install`
 * run 
