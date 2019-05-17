@@ -15,3 +15,9 @@
     position: relative;
     background-color: white; 
 }
+.navbar-brand
+{
+    font-weight: 800;
+    font-size: 25px;
+    text-shadow: 0px 2px #131313;
+}

@@ -9,7 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
-import { AlertComponent } from './_components';
+import { AlertComponent, FooterComponent } from './_components';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
@@ -31,7 +31,8 @@ import { BookComponent } from './book';
         RegisterComponent,
         ProfileComponent,
         BookComponent,
-        NavbarComponent
+        NavbarComponent,
+        FooterComponent
     ],
     providers: [
     ],

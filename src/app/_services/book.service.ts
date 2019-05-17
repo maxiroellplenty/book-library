@@ -22,10 +22,12 @@ export class BookService {
         return this.apiService.get('/bookstitle?title=' + text );
     }
 
+    rentBook(rentBookData)
+    {
+        return this.apiService.post('/user/rentbook',rentBookData);
+    }
 
     getBooksFromUserID(id: number) {
         return this.apiService.get('/user?id=' + id );
     }
-
-    
 }
