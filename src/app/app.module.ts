@@ -1,4 +1,5 @@
-﻿import { NgModule }      from '@angular/core';
+﻿import { NavbarComponent } from './_components/navbar/navbar.component';
+import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -29,7 +30,8 @@ import { BookComponent } from './book';
         LoginComponent,
         RegisterComponent,
         ProfileComponent,
-        BookComponent
+        BookComponent,
+        NavbarComponent
     ],
     providers: [
     ],
