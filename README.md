@@ -2,20 +2,16 @@
 
 ## Install 
 
-download with git 
-``
+* download with git 
+`https://github.com/maxiroellplenty/book-library.git`
+* go to the installed directory
+`npm install`
+* run 
+`npm start`
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:8080/`. The app will automatically reload if you change any of the source files.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `npm start` for a dev server. Navigate to `http://localhost:8080/`. The app will automatically reload if you change any of the source files.
 
 ## Further help
 
